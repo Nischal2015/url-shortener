@@ -1,0 +1,9 @@
+aws-lambda-powertools==2.25.1
+boto3==1.28.59
+botocore==1.31.59
+jmespath==1.0.1
+python-dateutil==2.8.2
+s3transfer==0.7.0
+six==1.16.0
+typing_extensions==4.8.0
+urllib3==1.26.17
