@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>URL Shortener</title>
+    <link rel="stylesheet" href="src/style.css" />
+  </head>
+  <body>
+    <header>
+      <div class="container">
+        <h1>URL Shortener</h1>
+        <h2>Simplify your links, trust and manage them</h2>
+      </div>
+    </header>
+    <section>
+      <div class="container">
+        <form class="form" id="form">
+          <label for="url">
+            <input
+              class="input"
+              type="text"
+              id="url"
+              name="url"
+              placeholder="Paste long URL and shorten it"
+            />
+          </label>
+          <button class="send" type="submit">Send</button>
+        </form>
+        <div class="short-url">
+          <a href="#" id="short-id" class="short-id" target="_blank"></a>
+        </div>
+      </div>
+    </section>
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>
