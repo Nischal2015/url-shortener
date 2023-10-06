@@ -1,6 +1,8 @@
+import json
 from .modules.dynamodb import get_dynamodb_table
 from time import time
 from random import choice
+from aws_lambda_powertools.event_handler import Response, content_types
 
 from .constants import app_constants
 from .constants import config_constants
@@ -15,7 +17,15 @@ def create_url(long_url):
 
     table.put_item(Item={"short_id": short_id, "url": long_url, "ttl": ttl})
 
-    return {"message": "URL successfully shortened", "result": {"short_url": short_url}}
+    respone = {
+        "message": "URL successfully shortened",
+        "result": {"shortUrl": short_url},
+    }
+    return Response(
+        status_code=200,
+        content_type=content_types.APPLICATION_JSON,
+        body=json.dumps(respone),
+    )
 
 
 def generate_short_id():
