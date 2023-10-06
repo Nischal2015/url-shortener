@@ -1,4 +1,4 @@
-const BASE_URL = 'https://jkldr0ioa1.execute-api.us-east-1.amazonaws.com';
+const BASE_URL = import.meta.env.VITE_BASE_URL;
 
 const form = document.getElementById('form') as HTMLElement;
 form.addEventListener('submit', onFormSubmit);
