@@ -4,6 +4,7 @@ const form = document.getElementById('form') as HTMLElement;
 form.addEventListener('submit', onFormSubmit);
 
 const anchor = document.getElementById('short-id') as HTMLAnchorElement;
+const button = document.getElementById('send') as HTMLButtonElement;
 
 function onFormSubmit(event: Event): void {
   event.preventDefault();
@@ -16,11 +17,26 @@ function onFormSubmit(event: Event): void {
       url: longURL,
     };
 
-    postData(`${BASE_URL}/v1/create`, urlData).then((response) => {
-      const content = response.result.shortUrl;
-      anchor.setAttribute('href', content);
-      anchor.textContent = content;
-    });
+    button.disabled = true;
+    button.classList.add('spinning');
+    anchor.classList.add('skeleton');
+
+    async function fetchData() {
+      try {
+        const response = await postData(`${BASE_URL}/v1/create`, urlData);
+        const content = response.result.shortUrl;
+        anchor.setAttribute('href', content);
+        anchor.textContent = content;
+      } catch (error) {
+        console.log(error);
+      } finally {
+        button.disabled = false;
+        button.classList.remove('spinning');
+        anchor.classList.remove('skeleton');
+      }
+    }
+
+    fetchData();
   }
 }
 
